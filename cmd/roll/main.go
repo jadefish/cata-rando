@@ -23,14 +23,14 @@ func main() {
 	picks := make([]rando.Pick, 0, len(peeps))
 
 	// Pick a tank and a healer spec:
-	picks = append(picks, r.Roll(rando.Tank))
-	picks = append(picks, r.Roll(rando.Healer))
+	picks = append(picks, r.RollRole(rando.Tank))
+	picks = append(picks, r.RollRole(rando.Healer))
 
 	// then fill with DPS:
 	n := max(0, len(peeps)-len(picks))
 
 	for i := 0; i < n; i++ {
-		picks = append(picks, r.Roll(rando.DPS))
+		picks = append(picks, r.RollRole(rando.DPS))
 	}
 
 	assignments := make(map[string]rando.Pick, len(peeps))
