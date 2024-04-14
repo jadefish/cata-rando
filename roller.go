@@ -81,7 +81,7 @@ func NewRoller() Roller {
 	}
 }
 
-func (r Roller) choose() Pick {
+func (r Roller) Roll() Pick {
 	n := rand.Intn(len(classes))
 	class := classes[n]
 
@@ -99,21 +99,21 @@ func (r Roller) choose() Pick {
 }
 
 func (r Roller) pickRole(role Role) Pick {
-	pick := r.choose()
+	pick := r.Roll()
 
 	for {
 		if pick.Role() == role {
 			break
 		}
 
-		pick = r.choose()
+		pick = r.Roll()
 	}
 
 	return pick
 }
 
 // Roll picks a role with a race and class that haven't been already rolled.
-func (r *Roller) Roll(role Role) Pick {
+func (r *Roller) RollRole(role Role) Pick {
 	pick := r.pickRole(role)
 
 	for {
